@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby1.9.1
+#
+# This is small wrapper script that allows Upstart to more easily
+# manage Puppet running under Unicorn. Due to Unicorn's forking
+# behavior, Upstart can't know which pid to track after the master
+# re-exec's itself.
+#
+# This script simply polls the Unicorn's pid file and passes known
+# signals through to the master. When the pid file disappears, we
+# assume Unicorn has finished and exit.
+#
+# Also, note that setting $0 to "puppet master" lets the logrotate
+# configuration that ships with the Puppet packages HUP Unicorn's
+# master correctly. It uses: pgrep -u puppet -f 'puppet master'
+
+$0 = "puppet master"
+
+Dir.chdir("<%= scope.lookupvar('::puppetmaster::confdir') %>")
+
+`unicorn -D -c <%= unicorn_rb %>`
+
+pid_file = "<%= pid_file %>"
+
+signals = %w(HUP INT TERM QUIT USR1 USR2 WINCH TTIN TTOU)
+
+signals.each do |signal|
+  puts signal
+  Signal.trap(signal) do
+    Process.kill(signal, File.read(pid_file).to_i)
+  end 
+end
+
+while File.exists?(pid_file)
+  sleep 1
+end

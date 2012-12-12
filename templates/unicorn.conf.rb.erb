@@ -1,0 +1,43 @@
+# Puppet Master unicorn.rb
+
+worker_processes <%= @worker_processes %>
+working_directory "<%= scope.lookupvar('::puppetmaster::confdir') %>"
+<% if @socket -%>
+listen "<%= @socket %>", :backlog => <%= @socket_backlog %>
+<% end -%>
+<% if @port -%>
+listen <%= @port %>, :tcp_nopush => <%= @tcp_nopush %>
+<% end -%>
+timeout <%= @timeout %>
+
+pid "<%= @pid_file %>"
+
+stderr_path "<%= scope.lookupvar('::puppetmaster::logdir') %>/puppetmaster_unicorn.log"
+stdout_path "<%= scope.lookupvar('::puppetmaster::logdir') %>/puppetmaster_unicorn.log"
+
+# Puppet 3.0 currently doesn't play well with "preload_app true",
+# though it may be possible to work around this by clearing the
+# right flags in the before_hook and modifying config.ru.
+preload_app false
+
+before_fork do |server, worker|
+  # This allows a new master process to incrementally
+  # phase out the old master process with SIGTTOU to avoid a
+  # thundering herd (especially in the "preload_app false" case)
+  # when doing a transparent upgrade.  The last worker spawned
+  # will then kill off the old master process with a SIGQUIT.
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if old_pid != server.pid
+    begin
+      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      Process.kill(sig, File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+    end
+  end
+
+  # Throttle the master from forking too quickly by sleeping.  Due
+  # to the implementation of standard Unix signal handlers, this
+  # helps (but does not completely) prevent identical, repeated signals
+  # from being lost when the receiving process is busy.
+  sleep 1
+end

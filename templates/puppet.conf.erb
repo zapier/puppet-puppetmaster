@@ -1,0 +1,30 @@
+[main]
+  logdir = <%=       scope.lookupvar('::puppetmaster::logdir')       %>
+  vardir = <%=       scope.lookupvar('::puppetmaster::vardir')       %>
+  ssldir = <%=       scope.lookupvar('::puppetmaster::ssldir')       %>
+  rundir = <%=       scope.lookupvar('::puppetmaster::rundir')       %>
+  factpath = <%=     scope.lookupvar('::puppetmaster::factpath')     %>
+  templatedir = <%=  scope.lookupvar('::puppetmaster::templatedir')  %>
+  hiera_config = <%= scope.lookupvar('::puppetmaster::hiera_config') %>
+  environment = <%=  scope.lookupvar('::puppetmaster::environment')  %>
+  certname = <%=     scope.lookupvar('::puppetmaster::certname')     %>
+<% unless scope.lookupvar('::puppetmaster::dns_alt_names').empty?   -%>
+  dns_alt_names = <%= scope.lookupvar('::puppetmaster::dns_alt_names').join(',') %>
+<% end -%>
+<% unless scope.lookupvar('::puppetmaster::ca_server').empty?   -%>
+  ca_server = <%= scope.lookupvar('::puppetmaster::ca_server') %>
+<% end -%>
+
+[master]
+  ssl_client_header = <%=        scope.lookupvar('::puppetmaster::ssl_client_header')        %>
+  ssl_client_verify_header = <%= scope.lookupvar('::puppetmaster::ssl_client_verify_header') %>
+  autosign = <%=                 scope.lookupvar('::puppetmaster::autosign')                 %>
+  manifest = <%=                 scope.lookupvar('::puppetmaster::manifest')                 %>
+  modulepath = <%=               scope.lookupvar('::puppetmaster::modulepath')               %>
+  ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
+
+[agent]
+  report = <%= scope.lookupvar('::puppetmaster::report') %>
+<% unless scope.lookupvar('::puppetmaster::server').empty? -%>
+  server = <%= scope.lookupvar('::puppetmaster::server') %>
+<% end -%>
