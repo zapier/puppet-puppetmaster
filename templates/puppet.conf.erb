@@ -21,8 +21,8 @@
   autosign = <%=                 scope.lookupvar('::puppetmaster::autosign')                 %>
   manifest = <%=                 scope.lookupvar('::puppetmaster::manifest')                 %>
   modulepath = <%=               scope.lookupvar('::puppetmaster::modulepath')               %>
-  ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
   ca_name = <%=                  scope.lookupvar('::puppetmaster::ca_name')                  %>
+  ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
 
 [agent]
   report = <%= scope.lookupvar('::puppetmaster::report') %>
