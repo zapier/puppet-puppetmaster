@@ -22,6 +22,7 @@ class puppetmaster (
   $modulepath               = $puppetmaster::params::modulepath,
   $hiera_config             = $puppetmaster::params::hiera_config,
   $ca                       = true,
+  $ca_name                  = 'Puppet CA: $certname',
   $ca_server                = '',
   $autosign                 = false,
   $report                   = true,
