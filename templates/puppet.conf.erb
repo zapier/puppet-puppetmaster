@@ -4,7 +4,6 @@
   ssldir = <%=       scope.lookupvar('::puppetmaster::ssldir')       %>
   rundir = <%=       scope.lookupvar('::puppetmaster::rundir')       %>
   factpath = <%=     scope.lookupvar('::puppetmaster::factpath')     %>
-  templatedir = <%=  scope.lookupvar('::puppetmaster::templatedir')  %>
   hiera_config = <%= scope.lookupvar('::puppetmaster::hiera_config') %>
   environment = <%=  scope.lookupvar('::puppetmaster::environment')  %>
   certname = <%=     scope.lookupvar('::puppetmaster::certname')     %>
@@ -20,6 +19,7 @@
   ssl_client_verify_header = <%= scope.lookupvar('::puppetmaster::ssl_client_verify_header') %>
   autosign = <%=                 scope.lookupvar('::puppetmaster::autosign')                 %>
   manifest = <%=                 scope.lookupvar('::puppetmaster::manifest')                 %>
+  templatedir = <%=              scope.lookupvar('::puppetmaster::templatedir')              %>
   modulepath = <%=               scope.lookupvar('::puppetmaster::modulepath')               %>
   ca_name = <%=                  scope.lookupvar('::puppetmaster::ca_name')                  %>
   ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
