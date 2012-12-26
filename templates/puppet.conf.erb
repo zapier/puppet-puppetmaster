@@ -25,10 +25,10 @@
   ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
 <% unless scope.lookupvar('::puppetmaster::node_terminus').empty?   -%>
   node_terminus = <%= scope.lookupvar('::puppetmaster::node_terminus') %>
-<% end %>
+<% end -%>
 <% unless scope.lookupvar('::puppetmaster::external_nodes').empty?   -%>
   external_nodes = <%= scope.lookupvar('::puppetmaster::external_nodes') %>
-<% end %>
+<% end -%>
 
 [agent]
   report = <%= scope.lookupvar('::puppetmaster::report') %>
