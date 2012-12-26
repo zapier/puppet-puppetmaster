@@ -7,4 +7,11 @@ class puppetmaster::service {
       hasrestart => true,
     }
   }
+
+  service { $puppetmaster::agent_service:
+      ensure     => $puppetmaster::agent_enable,
+      enable     => $puppetmaster::agent_enable,
+      hasstatus  => true,
+      hasrestart => true,
+  }
 }

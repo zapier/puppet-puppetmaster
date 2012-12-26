@@ -1,9 +1,18 @@
 class puppetmaster::config {
-  file { $puppetmaster::confdir:
-    ensure => 'directory',
+  File {
     owner  => 'root',
     group  => 'root',
+  }
+
+  file { $puppetmaster::confdir:
+    ensure => 'directory',
     mode   => '0755',
+  }
+
+  file { '/etc/default/puppet':
+    ensure  => 'present',
+    mode    => '0644',
+    content => template('puppetmaster/etc_default_puppet.erb'),
   }
 
   file { "${puppetmaster::confdir}/puppet.conf":

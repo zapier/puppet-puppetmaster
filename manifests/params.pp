@@ -6,6 +6,7 @@ class puppetmaster::params {
   $puppet_packages = ['puppet', 'puppetmaster-common']
   $master_package  = 'puppetmaster'
   $service         = 'puppetmaster'
+  $agent_service   = 'puppet'
   $user            = 'puppet'
   $group           = 'puppet'
   $logdir          = '/var/log/puppet'

@@ -29,3 +29,7 @@
 <% unless scope.lookupvar('::puppetmaster::server').empty? -%>
   server = <%= scope.lookupvar('::puppetmaster::server') %>
 <% end -%>
+  runinterval = <%= scope.lookupvar('::puppetmaster::runinterval') %>
+  splay = <%= scope.lookupvar('::puppetmaster::splay') %>
+  splaylimit = <%= scope.lookupvar('::puppetmaster::splaylimit') %>
+  noop = <%= scope.lookupvar('::puppetmaster::noop') %>

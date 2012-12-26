@@ -21,6 +21,12 @@ class puppetmaster (
   $manifest                 = $puppetmaster::params::manifest,
   $modulepath               = $puppetmaster::params::modulepath,
   $hiera_config             = $puppetmaster::params::hiera_config,
+  $agent_enable             = true,
+  $agent_service            = $puppetmaster::params::agent_service,
+  $runinterval              = '30m',
+  $splay                    = false,
+  $splaylimit               = '$runinterval',
+  $noop                     = false,
   $ca                       = true,
   $ca_name                  = 'Puppet CA: $certname',
   $ca_server                = '',
@@ -35,6 +41,8 @@ class puppetmaster (
   validate_bool($ca)
   validate_bool($autosign)
   validate_bool($report)
+  validate_bool($agent_enable)
+  validate_bool($splay)
 
   validate_array($dns_alt_names)
 
