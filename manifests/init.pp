@@ -21,6 +21,8 @@ class puppetmaster (
   $manifest                 = $puppetmaster::params::manifest,
   $modulepath               = $puppetmaster::params::modulepath,
   $hiera_config             = $puppetmaster::params::hiera_config,
+  $node_terminus            = '',
+  $external_nodes           = '',
   $agent_enable             = true,
   $agent_service            = $puppetmaster::params::agent_service,
   $runinterval              = '30m',
