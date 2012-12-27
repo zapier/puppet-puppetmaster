@@ -28,7 +28,7 @@ class puppetmaster (
   $runinterval              = '30m',
   $splay                    = false,
   $splaylimit               = '$runinterval',
-  $noop                     = false,
+  $noop_mode                = false,
   $ca                       = true,
   $ca_name                  = 'Puppet CA: $certname',
   $ca_server                = '',
