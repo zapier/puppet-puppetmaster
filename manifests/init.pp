@@ -19,6 +19,7 @@ class puppetmaster (
   $server                   = '',
   $confdir                  = $puppetmaster::params::confdir,
   $manifest                 = $puppetmaster::params::manifest,
+  $manifestdir              = $puppetmaster::params::manifestdir,
   $modulepath               = $puppetmaster::params::modulepath,
   $hiera_config             = $puppetmaster::params::hiera_config,
   $node_terminus            = '',

@@ -16,7 +16,8 @@ class puppetmaster::params {
   $factpath        = '$vardir/lib/facter'
   $templatedir     = '$confdir/templates'
   $confdir         = '/etc/puppet'
-  $manifest        = '$confdir/manifests/site.pp'
+  $manifest        = '$manifestdir/site.pp'
+  $manifestdir     = '$confdir/manifests'
   $modulepath      = '$confdir/modules'
   $hiera_config    = '/etc/hiera.yaml'
 
