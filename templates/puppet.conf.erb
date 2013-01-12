@@ -22,6 +22,7 @@
   manifestdir = <%=              scope.lookupvar('::puppetmaster::manifestdir')              %>
   templatedir = <%=              scope.lookupvar('::puppetmaster::templatedir')              %>
   modulepath = <%=               scope.lookupvar('::puppetmaster::modulepath')               %>
+  filetimeout = <%=              scope.lookupvar('::puppetmaster::filetimeout')              %>
   ca_name = <%=                  scope.lookupvar('::puppetmaster::ca_name')                  %>
   ca = <%=                       scope.lookupvar('::puppetmaster::ca')                       %>
 <% unless scope.lookupvar('::puppetmaster::node_terminus').empty?   -%>

@@ -22,6 +22,7 @@ class puppetmaster (
   $manifestdir              = $puppetmaster::params::manifestdir,
   $modulepath               = $puppetmaster::params::modulepath,
   $hiera_config             = $puppetmaster::params::hiera_config,
+  $filetimeout              = '15s',
   $node_terminus            = '',
   $external_nodes           = '',
   $agent_enable             = true,
