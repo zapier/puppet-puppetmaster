@@ -8,3 +8,4 @@ description  'This module helps with bootstrapping new puppet masters'
 project_page 'https://github.com/bison/puppet-pupppetmaster'
 
 dependency 'puppetlabs/stdlib', '>= 0.1.6'
+dependency 'cprice404/inifile', '>= 0.9.0'
