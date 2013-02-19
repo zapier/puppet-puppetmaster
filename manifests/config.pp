@@ -76,7 +76,7 @@ class puppetmaster::config {
     ini_setting { 'puppet.conf-main-dns_alt_names':
       section => 'main',
       setting => 'dns_alt_names',
-      value   => $::puppetmaster::dns_alt_names,
+      value   => join($::puppetmaster::dns_alt_names, ','),
     }
   }
 
