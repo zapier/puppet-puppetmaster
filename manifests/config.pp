@@ -1,6 +1,6 @@
 class puppetmaster::config {
   File {
-    owner  => 'root',
+    owner  => 'puppet',
     group  => 'root',
   }
 
@@ -33,7 +33,7 @@ class puppetmaster::config {
       path    => '/usr/bin:/bin',
       command => $cert_command,
       creates => $cert_file,
-      user    => 'root',
+      user    => 'puppet',
       group   => 'root',
       require => File["${puppetmaster::confdir}/puppet.conf"],
     }
