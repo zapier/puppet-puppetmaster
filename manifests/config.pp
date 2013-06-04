@@ -1,23 +1,25 @@
 class puppetmaster::config {
-  File {
-    owner  => 'puppet',
-    group  => 'root',
-  }
 
   file { $puppetmaster::confdir:
     ensure => 'directory',
     mode   => '0755',
+    owner  => 'puppet',
+    group  => 'puppet',
   }
 
   file { '/etc/default/puppet':
     ensure  => 'present',
     mode    => '0644',
     content => template('puppetmaster/etc_default_puppet.erb'),
+    owner  => 'puppet',
+    group  => 'puppet',
   }
 
   file { "${puppetmaster::confdir}/puppet.conf":
     ensure  => 'present',
     content => template($puppetmaster::puppet_conf_template),
+    owner  => 'puppet',
+    group  => 'puppet',
   }
 
   # Only CA servers should generate their own cert.
@@ -33,7 +35,7 @@ class puppetmaster::config {
       path    => '/usr/bin:/bin',
       command => $cert_command,
       creates => $cert_file,
-      user    => 'puppet',
+      user    => 'root',
       group   => 'root',
       require => File["${puppetmaster::confdir}/puppet.conf"],
     }
