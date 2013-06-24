@@ -9,7 +9,8 @@ class puppetmaster::unicorn (
   $check_client_connection = true,
   $upstart_job             = true,
   $unicorn_rb              = "${puppetmaster::confdir}/unicorn.rb",
-  $unicorn_rb_template     = 'puppetmaster/unicorn.conf.rb.erb'
+  $unicorn_rb_template     = 'puppetmaster/unicorn.conf.rb.erb',
+  $upstart_environment     = {}
 ) {
 
   include puppetmaster
@@ -47,7 +48,7 @@ class puppetmaster::unicorn (
       user           => $::puppetmaster::user,
       group          => $::puppetmaster::group,
       chdir          => $::puppetmaster::confdir,
-      environment    => { 'HOME' => $::puppetmaster::vardir },
+      environment    => merge({ 'HOME' => $::puppetmaster::vardir }, $upstart_environment),
       exec           => '/usr/local/bin/puppetmaster',
       restart        => 'pkill -USR2 -u puppet -f "puppet master"',
       require        => File['/usr/local/bin/puppetmaster'],
