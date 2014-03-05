@@ -14,12 +14,15 @@ class puppetmaster::params {
   $ssldir          = '/var/lib/puppet/ssl'
   $rundir          = '/run/puppet'
   $factpath        = '$vardir/lib/facter'
-  $templatedir     = '$confdir/templates'
   $confdir         = '/etc/puppet'
+  $templatedir     = '$confdir/templates'
   $manifest        = '$manifestdir/site.pp'
   $manifestdir     = '$confdir/manifests'
   $modulepath      = '$confdir/modules'
   $hiera_config    = '/etc/hiera.yaml'
+  $staging_manifest    = '$manifestdir/site.pp'
+  $staging_manifestdir = '$confdir/manifests'
+  $staging_modulepath  = '$confdir/modules'
 
   # This is where the Puppet package (puppet-common on Debian)
   # installed the 'config.ru' file. We may need to copy it if

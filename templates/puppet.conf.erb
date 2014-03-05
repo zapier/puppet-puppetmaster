@@ -32,6 +32,11 @@
   external_nodes = <%= scope.lookupvar('::puppetmaster::external_nodes') %>
 <% end -%>
 
+[staging] 
+  manifest    = <%=              scope.lookupvar('::puppetmaster::staging_manifest')                 %>
+  manifestdir = <%=              scope.lookupvar('::puppetmaster::staging_manifestdir')              %>
+  modulepath  = <%=              scope.lookupvar('::puppetmaster::staging_modulepath')               %>
+
 [agent]
   report = <%= scope.lookupvar('::puppetmaster::report') %>
 <% unless scope.lookupvar('::puppetmaster::server').empty? -%>

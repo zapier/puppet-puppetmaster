@@ -38,7 +38,10 @@ class puppetmaster (
   $report                   = true,
   $ssl_client_header        = 'SSL_CLIENT_S_DN',
   $ssl_client_verify_header = 'SSL_CLIENT_VERIFY',
-  $puppet_conf_template     = 'puppetmaster/puppet.conf.erb'
+  $puppet_conf_template     = 'puppetmaster/puppet.conf.erb',
+  $staging_manifest                 = $puppetmaster::params::staging_manifest,
+  $staging_manifestdir              = $puppetmaster::params::staging_manifestdir,
+  $staging_modulepath               = $puppetmaster::params::staging_modulepath,
 ) inherits puppetmaster::params {
 
   validate_bool($service_enable)
